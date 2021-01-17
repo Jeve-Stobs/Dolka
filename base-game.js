@@ -25,7 +25,7 @@ var cg = {
       this.ctx.fillText(t, (this.config.width - w) / 2, cg.config.height / 2)
 
       this.ctx.font = 'italic 34px Georgia'
-      w = this.ctx.measureText(t = '(Play Again?)').width
+      w = this.ctx.measureText(t = 'Play Again?').width
       this.ctx.fillText(t, (this.config.width - w) / 2, cg.config.height / 2 + 110)
     }
     $(this.canvas).click(function () {
