@@ -1,147 +1,142 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
 	<title>Dolka</title>
-  <meta name="author" content="Jeve Stobs">
+	<meta property="og:title" content="Dolka" />
+	<meta name="author" content="Jeve Stobs">
+	<meta name="description" content="A game where you eat blobs. Made during school.">
 	<link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/ygBt4xj/ar0q5-qxyfr.png" alt="ar0q5-qxyfr" border="0">
-	<link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet" type="text/css">
-
-	<script src="https://code.jquery.com/jquery-latest.min.js">
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Clicker+Script" integrity="sha384-GzhWAQ+Q+CAspJgZgDuQTwgKuUHoWejBEWRsTHpucDcVOmxyiWmAIoSjKfUSk/n1" crossorigin="anonymous" type="text/css">
+	<script src="https://code.jquery.com/jquery-latest.min.js" defer integrity="sha384-UM1JrZIpBwVf5jj9dTKVvGiiZPZTLVoq4sfdvIe9SBumsvCuv6AHDNtEiIb5h1kU" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer>
 	</script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js">
-
+	<script src="resources/web.js" defer>
 	</script>
-
-	<script src="web.js">
-
+	<script src="base-game.js" defer>
 	</script>
-	<script src="base-game.js">
-
-	</script>
-	<script src="resources/supported.js">
-
+	<script src="resources/supported.js" defer>
 	</script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-P5XJGNXJL3">
-
 	</script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-P5XJGNXJL3');
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-P5XJGNXJL3');
 	</script>
-
 	<style type="text/css" src=>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Georgia, serif;
-			text-shadow: 1px 2px #ccc;
-			color: #fff;
-			overflow-y: hidden;
-			overflow-x: hidden;
-		}
-
-		canvas {
-			background-image: radial-gradient(circle, rgb(89, 14, 46) 0%, rgb(17, 58, 106) 100%);
-			width: 100%;
-			height: 100%;
-		}
-
-		.win {
-			font-family: 'Clicker Script', cursive;
-			font-weight: normal;
-			font-style: normal;
-			font-size: 96px;
-			line-height: 108px;
-			padding: 12px 0 0 0;
-			margin: 0;
-			text-shadow: 1px 2px #ccc;
-			color: #fff;
-		}
-
-		.again {
-			font-family: 'Clicker Script', cursive;
-			font-weight: normal;
-			font-style: normal;
-			font-size: 96px;
-			line-height: 108px;
-			text-shadow: 1px 2px #ccc;
-			color: #fff;
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			margin: -50px 0 0 -307px;
-			cursor: default;
-		}
-
-		.points {
-			font-family: Arial, sans-serif;
-			position: absolute;
-			top: 24px;
-			right: 24px;
-			z-index: 999;
-			margin: 0;
-			padding: 0;
-			font-size: 128px;
-			line-height: 128px;
-		}
-
-		.int {
-			font-size: 20px;
-			font-style: italic;
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			margin: -66px 0 0 -191px;
-			text-align: center;
-			z-index: 999;
-		}
-
-		.initials {
-			font-size: 18px;
-			background: none;
-			width: 58px;
-			font-family: Arial, sans-serif;
-			text-shadow: 2px 2px #ccc;
-			color: #fff;
-			margin: 0 2px 0 -58px;
-			text-transform: uppercase;
-			letter-spacing: 4px;
-			border: 0;
-			outline: none;
-			padding: 0 2px 0 4px;
-		}
-
-		.submit {
-			border: 2px solid #C44D58;
-			padding: 6px 16px;
-			font-family: Georgia, serif;
-			text-shadow: 2px 2px #C44D58;
-			color: #fff;
-			font-style: italic;
-			font-size: 20px;
-			background: #e45f5f;
-			margin: 0 0 0 10px;
-		}
-
-		.hide {
-			display: none;
-		}
-
-		.unhide {
-			display: block;
-		}
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: Georgia, serif;
+		text-shadow: 1px 2px #ccc;
+		color: #fff;
+		overflow-y: hidden;
+		overflow-x: hidden;
+	}
+	
+	canvas {
+		background-image: radial-gradient(circle, rgb(89, 14, 46) 0%, rgb(17, 58, 106) 100%);
+		width: 100%;
+		height: 100%;
+	}
+	
+	.win {
+		font-family: 'Clicker Script', cursive;
+		font-weight: normal;
+		font-style: normal;
+		font-size: 96px;
+		line-height: 108px;
+		padding: 12px 0 0 0;
+		margin: 0;
+		text-shadow: 1px 2px #ccc;
+		color: #fff;
+	}
+	
+	.again {
+		font-family: 'Clicker Script', cursive;
+		font-weight: normal;
+		font-style: normal;
+		font-size: 96px;
+		line-height: 108px;
+		text-shadow: 1px 2px #ccc;
+		color: #fff;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin: -50px 0 0 -307px;
+		cursor: default;
+	}
+	
+	.points {
+		font-family: Arial, sans-serif;
+		position: absolute;
+		top: 24px;
+		right: 24px;
+		z-index: 999;
+		margin: 0;
+		padding: 0;
+		font-size: 128px;
+		line-height: 128px;
+	}
+	
+	.int {
+		font-size: 20px;
+		font-style: italic;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin: -66px 0 0 -191px;
+		text-align: center;
+		z-index: 999;
+	}
+	
+	.initials {
+		font-size: 18px;
+		background: none;
+		width: 58px;
+		font-family: Arial, sans-serif;
+		text-shadow: 2px 2px #ccc;
+		color: #fff;
+		margin: 0 2px 0 -58px;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		border: 0;
+		outline: none;
+		padding: 0 2px 0 4px;
+	}
+	
+	.submit {
+		border: 2px solid #C44D58;
+		padding: 6px 16px;
+		font-family: Georgia, serif;
+		text-shadow: 2px 2px #C44D58;
+		color: #fff;
+		font-style: italic;
+		font-size: 20px;
+		background: #e45f5f;
+		margin: 0 0 0 10px;
+	}
+	
+	.hide {
+		display: none;
+	}
+	
+	.unhide {
+		display: block;
+	}
 	</style>
 </head>
 
 <body>
 	<h1 class="points"></h1>
 	<h2 class="int hide"><span class="win">Great Score!</span></h2>
-<h2 class="again hide">Ouch! Play Again?</h2>
-<canvas></canvas>
+	<h2 class="again hide">Ouch! Play Again?</h2>
+	<canvas></canvas>
 </body>
+
 </html>

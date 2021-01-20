@@ -1,5 +1,6 @@
 var cg = {
-  lastTime: (new Date()).getTime(), config: {
+  lastTime: (new Date()).getTime(),
+  config: {
     width: 640,
     height: 960,
     autosize: true,
@@ -15,10 +16,10 @@ var cg = {
     touchmove: isEventSupported('touchmove')
   },
   circles: [],
-  death: function () {
+  death: function() {
     pts = cg.player.radius
     this.stop()
-    this.dispText = function () {
+    this.dispText = function() {
       this.ctx.font = '96px Clicker Script'
       this.ctx.fillStyle = 'white'
       w = this.ctx.measureText(t = 'Ouch!').width
@@ -28,12 +29,12 @@ var cg = {
       w = this.ctx.measureText(t = 'Play Again?').width
       this.ctx.fillText(t, (this.config.width - w) / 2, cg.config.height / 2 + 110)
     }
-    $(this.canvas).click(function () {
-      cg.dispText = function () { }
+    $(this.canvas).click(function() {
+      cg.dispText = function() {}
       cg.start()
     })
   },
-  stop: function () {
+  stop: function() {
     $(window).unbind('keydown');
     $(window).unbind('blur');
     $(document).unbind('touchmove');
@@ -41,8 +42,8 @@ var cg = {
     cg.showCursor();
     this.player = false;
   },
-  start: function () {
-    cg.dispText = function () { };
+  start: function() {
+    cg.dispText = function() {};
     $(cg.canvas).unbind('click');
     cg.player = new Player();
     cg.circles = [];
@@ -51,28 +52,27 @@ var cg = {
       $(document).bind('touchmove', cg.touchMove);
     else
       $(cg.canvas).mousemove(cg.mouseMove);
-    $(window).blur(function () {
+    $(window).blur(function() {
       cg.pause();
     });
-    $(window).keydown(function (e) {
+    $(window).keydown(function(e) {
       if (e.keyCode == 32) {
         cg.togglePause();
         e.preventDefault();
       }
     });
   },
-  maxCircles: function () {
+  maxCircles: function() {
     return Math.round(cg.config.width * cg.config.height / (10 * 1000) / cg.config.circle.count);
   },
-  hideCursor: function () {
-  },
-  showCursor: function () {
+  hideCursor: function() {},
+  showCursor: function() {
     $(cg.canvas).css('cursor', 'default');
   },
-  pause: function () {
+  pause: function() {
     if (!this.paused) {
       cg.showCursor();
-      cg.dispText = function () {
+      cg.dispText = function() {
         this.ctx.font = '96px Clicker Script';
         this.ctx.fillStyle = 'white';
         this.ctx.shadowColor = '#ccc';
@@ -94,27 +94,30 @@ var cg = {
       this.paused = true
     }
   },
-  unpause: function () {
+  unpause: function() {
     if (this.paused) {
-      cg.dispText = function () { }
+      cg.dispText = function() {}
       cg.hideCursor()
       this.paused = false
     }
   },
-  togglePause: function () {
+  togglePause: function() {
     if (this.paused)
       this.unpause()
     else
       this.pause()
   },
-  init: function () {
+  init: function() {
 
     /* Formatted to Here TMC */
 
     cg.autosize()
 
     this.canvas = $('canvas')
-    this.canvas.attr({ width: this.config.width, height: this.config.height })
+    this.canvas.attr({
+      width: this.config.width,
+      height: this.config.height
+    })
     this.canvas = this.canvas[0]
     this.ctx = this.canvas.getContext('2d')
 
@@ -122,7 +125,7 @@ var cg = {
       this.circles[i] = new Circle(true)
 
 
-    var mm = function (e) {
+    var mm = function(e) {
       if (cg.inZBounds(e.clientX, e.clientY)) {
         $(cg.canvas).css('cursor', 'pointer')
       } else {
@@ -132,7 +135,7 @@ var cg = {
 
     $(this.canvas).mousemove(mm)
 
-    $(this.canvas).click(function (e) {
+    $(this.canvas).click(function(e) {
       if (cg.inZBounds(e.clientX, e.clientY)) {
         window.open('http://sysach.com', '_blank')
       } else {
@@ -143,20 +146,23 @@ var cg = {
 
     this.tick()
   },
-  inZBounds: function (x, y) {
+  inZBounds: function(x, y) {
     return (x > cg.zLogoX &&
       x < cg.zLogoX + cg.zWidth &&
       y > cg.zLogoY &&
       y < cg.zLogoY + cg.zHeight)
   },
-  autosize: function () {
+  autosize: function() {
     if (cg.config.autosize) {
       cg.config.width = window.innerWidth
       cg.config.height = window.innerHeight
-      $(cg.canvas).attr({ width: cg.config.width, height: cg.config.height })
+      $(cg.canvas).attr({
+        width: cg.config.width,
+        height: cg.config.height
+      })
     }
   },
-  tick: function () {
+  tick: function() {
     now = (new Date()).getTime()
     window.elapsed = now - cg.lastTime
     cg.lastTime = now
@@ -181,24 +187,24 @@ var cg = {
           if (cg.circles[i].tick())
             i--
     }
-    if (typeof (cg.player) != 'undefined' && cg.player)
+    if (typeof(cg.player) != 'undefined' && cg.player)
       cg.player.tick()
 
     cg.dispText()
 
   },
-  touchMove: function (e) {
+  touchMove: function(e) {
     e.preventDefault()
     var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
     cg.mouseMove(touch)
   },
-  mouseMove: function (e) {
+  mouseMove: function(e) {
     if (!cg.paused) {
       cg.player.x = e.clientX
       cg.player.y = e.clientY
     }
   },
-  dispText: function () {
+  dispText: function() {
     this.ctx.font = '96px Clicker Script'
     this.ctx.fillStyle = 'white'
     this.ctx.shadowColor = '#ccc'
@@ -218,11 +224,11 @@ var cg = {
     this.ctx.fillText(t, (this.config.width - w) / 2, cg.config.height / 2 + 40)
   }
 }
-var Circle = function (inCenter) {
+var Circle = function(inCenter) {
   min = cg.config.circle.minRadius
   max = cg.config.circle.maxRadius
 
-  if (typeof (cg.player) != 'undefined' && cg.player) {
+  if (typeof(cg.player) != 'undefined' && cg.player) {
     if (min < cg.player.radius - 35)
       min = cg.player.radius - 35
     if (max < cg.player.radius + 15)
@@ -246,7 +252,7 @@ var Circle = function (inCenter) {
     } else if (r > .25 && r <= .5) {
       this.x = cg.config.width + this.radius - 1
       this.y = Math.random() * cg.config.height
-      this.vx = - Math.random()
+      this.vx = -Math.random()
       this.vy = Math.random() - .5
     } else if (r > .5 && r <= .75) {
       this.x = Math.random() * cg.config.height
@@ -257,7 +263,7 @@ var Circle = function (inCenter) {
       this.x = Math.random() * cg.config.height
       this.y = cg.config.height + this.radius - 1
       this.vx = Math.random() - .5
-      this.vy = - Math.random()
+      this.vy = -Math.random()
     }
   }
   this.vx *= cg.config.circle.speedScale
@@ -267,7 +273,7 @@ var Circle = function (inCenter) {
     this.vy = this.vy < 0 ? -1 : 1
   }
 
-  this.tick = function () {
+  this.tick = function() {
     if (!this.inBounds()) {
       for (var i = 0; i < cg.circles.length; i++)
         if (cg.circles[i].x == this.x && cg.circles[i].y == this.y) {
@@ -280,7 +286,7 @@ var Circle = function (inCenter) {
     }
   }
 
-  this.inBounds = function () {
+  this.inBounds = function() {
     if (this.x + this.radius < 0 ||
       this.x - this.radius > cg.config.width ||
       this.y + this.radius < 0 ||
@@ -290,12 +296,12 @@ var Circle = function (inCenter) {
       return true
   }
 
-  this.move = function () {
+  this.move = function() {
     this.x += this.vx * elapsed / 15
     this.y += this.vy * elapsed / 15
   }
 
-  this.render = function () {
+  this.render = function() {
     cg.ctx.beginPath()
     cg.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
     cg.ctx.fillStyle = this.color
@@ -305,17 +311,17 @@ var Circle = function (inCenter) {
 
   this.render()
 }
-var Player = function () {
+var Player = function() {
   this.x = cg.config.width / 2
   this.y = cg.config.height / 2
   this.color = 'white'
   this.radius = cg.config.circle.playerRadius
-  this.tick = function () {
+  this.tick = function() {
     this.detectCollision()
     this.render()
   }
   var points = 0
-  this.detectCollision = function () {
+  this.detectCollision = function() {
     for (var i = 0; i < cg.circles.length; i++) {
       circle = cg.circles[i]
       dist = Math.pow(Math.pow(circle.x - this.x, 2) + Math.pow(circle.y - this.y, 2), .5)
@@ -332,7 +338,7 @@ var Player = function () {
       }
     }
   }
-  this.render = function () {
+  this.render = function() {
     cg.ctx.beginPath()
     cg.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
     cg.ctx.fillStyle = '#fff'
