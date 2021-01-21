@@ -71,7 +71,7 @@ var cg = {
   },
   pause: function() {
     if (!this.paused) {
-      cg.showCursor();
+      cg.hideCursor();
       cg.dispText = function() {
         this.ctx.font = '96px Clicker Script';
         this.ctx.fillStyle = 'white';
