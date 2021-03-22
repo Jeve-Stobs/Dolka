@@ -1,9 +1,9 @@
 var cg = {
   lastTime: (new Date()).getTime(),
   config: {
-    width: 640,
-    height: 960,
-    autosize: true,
+    width: 1920,
+    height: 1080,
+    autosize: false,
     circle: {
       count: 1.75,
       minRadius: 5,
